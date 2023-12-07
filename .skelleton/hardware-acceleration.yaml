@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  hardware-acceleration:
+    # --------------------------------------------------------------------------
+    # Intel QuickSync or VAAPI
+    # --------------------------------------------------------------------------
+
+    # devices:
+    #   - /dev/dri:/dev/dri
+
+    # --------------------------------------------------------------------------
+    # VAAPI in WSL2
+    # --------------------------------------------------------------------------
+
+    # volumes:
+    #   - /usr/lib/wsl:/usr/lib/wsl
+    # environment:
+    #   - LD_LIBRARY_PATH=/usr/lib/wsl/lib
+    #   - LIBVA_DRIVER_NAME=d3d12
+
+    # --------------------------------------------------------------------------
+    # NVIDIA GPU
+    # --------------------------------------------------------------------------
+
+    # environment:
+    #   - NVIDIA_DRIVER_CAPABILITIES=all
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu,video]
