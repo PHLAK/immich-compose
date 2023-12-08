@@ -20,7 +20,7 @@ Installation
 
   3. Set the environment variables in `.env`
 
-  4. Set service-specific environment variables by editing the files found in the `config` directory (optional)
+  4. Set service-specific environment variables by editing the files found in the `environment.d` directory (optional)
 
   5. Run `docker-compose config` to validate and confirm your configuration
 
