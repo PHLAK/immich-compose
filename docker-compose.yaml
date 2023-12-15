@@ -8,7 +8,6 @@ services:
     depends_on:
       - redis
       - postgres
-      - typesense
     env_file: environment.d/immich.env
     environment:
       DB_HOSTNAME: ${DATABASE_HOST:-postgres}
@@ -16,7 +15,6 @@ services:
       DB_USERNAME: ${DATABASE_USER:-immich}
       DB_PASSWORD: ${DATABASE_PASSWORD}
       REDIS_HOSTNAME: redis
-      TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
       TZ: ${TZ:-UTC}
     ports:
       - ${IMMICH_SERVER_PORT:-3001}:3001
@@ -36,7 +34,6 @@ services:
     depends_on:
       - redis
       - postgres
-      - typesense
     env_file: environment.d/immich.env
     environment:
       DB_HOSTNAME: ${DATABASE_HOST:-postgres}
@@ -44,7 +41,6 @@ services:
       DB_USERNAME: ${DATABASE_USER:-immich}
       DB_PASSWORD: ${DATABASE_PASSWORD}
       REDIS_HOSTNAME: redis
-      TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
       TZ: ${TZ:-UTC}
     volumes:
       - ${IMMICH_UPLOADS_PATH}:/usr/src/app/upload
@@ -64,18 +60,8 @@ services:
       TZ: ${TZ:-UTC}
     restart: unless-stopped
 
-  typesense:
-    image: typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd
-    environment:
-      TYPESENSE_API_KEY: ${TYPESENSE_API_KEY}
-      TYPESENSE_DATA_DIR: /data
-      GLOG_minloglevel: 1 # Remove to get debug messages
-    volumes:
-      - ${TYPESENSE_DATA_VOLUME:-typesense-data}:/data
-    restart: unless-stopped
-
   postgres:
-    image: postgres:16.1
+    image: tensorchord/pgvecto-rs:pg16-v0.1.11
     environment:
       POSTGRES_DB: ${DATABASE_NAME:-immich}
       POSTGRES_USER: ${DATABASE_USER:-immich}
@@ -108,4 +94,3 @@ services:
 volumes:
   postgres-data: {}
   model-cache: {}
-  typesense-data: {}
