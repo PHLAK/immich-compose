@@ -22,12 +22,23 @@ Installation
 
   4. Set service-specific environment variables by editing the files found in the `environment.d` directory (optional)
 
-  5. Run `docker-compose config` to validate and confirm your configuration
+  5. Run `docker compose config` to validate and confirm your configuration
 
-  6. Run `docker-compose up -d` to start the containers
+  6. Run `docker compose up -d` to start the containers
 
 Hardware Acceleration
 ---------------------
 
 To enable hardware acceleration for transcoding you can uncomment the relevant
-lines in `hardware-acceleration.yaml` based on your available hardware.
+lines in `hardware-acceleration.yaml` based on your available hardware. Then
+run `docker compose up -d` to restart your containers.
+
+Configuration
+-------------
+
+> [!IMPORTANT]
+> The Machine Learning URL must be updated for machine learning features to work
+
+| Option               | Value                          |
+| -------------------- | ------------------------------ |
+| Machine Learning URL | `http://machine-learning:3003` |
