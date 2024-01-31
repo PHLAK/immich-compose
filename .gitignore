@@ -1,2 +1,2 @@
 /.env
-/hardware-acceleration.yaml
+/hardware-acceleration.*.yaml

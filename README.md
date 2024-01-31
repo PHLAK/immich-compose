@@ -29,9 +29,14 @@ Installation
 Hardware Acceleration
 ---------------------
 
-To enable hardware acceleration for transcoding you can uncomment the relevant
-lines in `hardware-acceleration.yaml` based on your available hardware. Then
-run `docker compose up -d` to restart your containers.
+To enable hardware accelerated transcoding uncomment the relevant lines in
+`hardware-acceleration.ms.yaml` based on your available hardware.
+
+To enable hardware accelerated machine learning uncomment the relevant lines in
+`hardware-acceleration.ml.yaml` based on your available hardware.
+
+After making any changes to the above files you must run `docker compose up -d`
+to restart your containers.
 
 Configuration
 -------------

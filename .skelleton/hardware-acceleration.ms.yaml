@@ -10,9 +10,11 @@ services:
     #   - /dev/dri:/dev/dri
 
     # --------------------------------------------------------------------------
-    # VAAPI in WSL2
+    # Intel QuickSync or VAAPI (WSL)
     # --------------------------------------------------------------------------
 
+    # devices:
+    #   - /dev/dri:/dev/dri
     # volumes:
     #   - /usr/lib/wsl:/usr/lib/wsl
     # environment:
@@ -20,15 +22,16 @@ services:
     #   - LIBVA_DRIVER_NAME=d3d12
 
     # --------------------------------------------------------------------------
-    # NVIDIA GPU
+    # NVIDIA
     # --------------------------------------------------------------------------
 
-    # environment:
-    #   - NVIDIA_DRIVER_CAPABILITIES=all
     # deploy:
     #   resources:
     #     reservations:
     #       devices:
     #         - driver: nvidia
     #           count: 1
-    #           capabilities: [gpu,video]
+    #           capabilities:
+    #             - gpu
+    #             - compute
+    #             - video

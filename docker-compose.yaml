@@ -30,7 +30,7 @@ services:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     command: ["start.sh", "microservices"]
     extends:
-      file: hardware-acceleration.yaml
+      file: hardware-acceleration.ms.yaml
       service: hardware-acceleration
     depends_on:
       - redis
@@ -50,6 +50,9 @@ services:
   
   machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
+    extends:
+      file: hardware-acceleration.ml.yaml
+      service: hardware-acceleration
     volumes:
       - ${MODEL_CACHE_VOLUME:-model-cache}:/cache
     environment:
