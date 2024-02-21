@@ -46,7 +46,7 @@ services:
     volumes:
       - ${IMMICH_UPLOADS_PATH}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
   
   machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
@@ -65,7 +65,7 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: tensorchord/pgvecto-rs:pg16-v0.1.11
+    image: tensorchord/pgvecto-rs:pg16-v0.2.0
     environment:
       POSTGRES_DB: ${DATABASE_NAME:-immich}
       POSTGRES_USER: ${DATABASE_USER:-immich}
