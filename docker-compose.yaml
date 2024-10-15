@@ -17,7 +17,7 @@ services:
       REDIS_HOSTNAME: redis
       TZ: ${TZ:-UTC}
     ports:
-      - ${IMMICH_SERVER_PORT:-3001}:3001
+      - ${IMMICH_SERVER_PORT:-2283}:2283
     volumes:
       - ${IMMICH_UPLOADS_PATH}:/usr/src/app/upload
       - ./volumes/config:/config:ro
