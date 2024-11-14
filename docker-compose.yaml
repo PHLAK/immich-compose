@@ -54,23 +54,6 @@ services:
       com.centurylinklabs.watchtower.scope: immich-compose
     restart: unless-stopped
 
-  database-backups:
-    image: prodrigestivill/postgres-backup-local:${POSTGRES_BACKUP_VERSION:-16}
-    depends_on: [postgres]
-    env_file: environment.d/database-backups.env
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_CLUSTER: 'TRUE'
-      POSTGRES_DB: ${DATABASE_NAME:-immich}
-      POSTGRES_USER: ${DATABASE_USER:-immich}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_EXTRA_OPTS: '--clean --if-exists'
-      BACKUP_DIR: /backups
-    volumes:
-      - ./volumes/backups:/backups
-      - /etc/localtime:/etc/localtime:ro
-    restart: unless-stopped
-
   redis:
     image: redis:7.2
     volumes:
