@@ -21,7 +21,7 @@ services:
       - ./volumes/config:/config:ro
       - /etc/localtime:/etc/localtime:ro
     labels:
-      com.centurylinklabs.watchtower.scope: immich-compose
+      com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
 
   machine-learning:
@@ -51,7 +51,7 @@ services:
       - ${DATABASE_VOLUME:-postgres-data}:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
     labels:
-      com.centurylinklabs.watchtower.scope: immich-compose
+      com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
 
   redis:
@@ -59,19 +59,19 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
     labels:
-      com.centurylinklabs.watchtower.scope: immich-compose
+      com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
 
   watchtower:
     image: containrrr/watchtower
     env_file: environment.d/watchtower.env
     environment:
-      WATCHTOWER_SCOPE: immich-compose
+      WATCHTOWER_SCOPE: ${COMPOSE_PROJECT_NAME}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
     labels:
-      com.centurylinklabs.watchtower.scope: immich-compose
+      com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
 
 volumes:
