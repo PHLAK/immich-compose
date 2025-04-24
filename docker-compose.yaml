@@ -55,11 +55,13 @@ services:
     restart: unless-stopped
 
   redis:
-    image: redis:7.2
+    image: valkey/valkey:${VALKEY_VERSION:-8.1}
     volumes:
       - /etc/localtime:/etc/localtime:ro
     labels:
       com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
+    healthcheck:
+      test: redis-cli ping || exit 1
     restart: unless-stopped
 
   watchtower:
