@@ -55,7 +55,7 @@ services:
     restart: unless-stopped
 
   redis:
-    image: valkey/valkey:${VALKEY_VERSION:-8.1}
+    image: valkey/valkey:${VALKEY_VERSION:-8}
     volumes:
       - /etc/localtime:/etc/localtime:ro
     labels:
