@@ -42,7 +42,7 @@ services:
     restart: unless-stopped
 
   postgres:
-    image: ghcr.io/immich-app/postgres:${POSTGRES_VERSION:-16-vectorchord0.3.0}
+    image: ghcr.io/immich-app/postgres:${POSTGRES_VERSION:-16-vectorchord0.4.2}
     env_file: environment.d/postgres.env
     environment:
       POSTGRES_DB: ${DATABASE_NAME:-immich}
