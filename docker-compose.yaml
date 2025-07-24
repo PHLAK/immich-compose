@@ -3,7 +3,7 @@ services:
   immich:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     extends:
-      file: hardware-acceleration.yaml
+      file: hardware-acceleration.immich.yaml
       service: hardware-acceleration
     depends_on: [database, cache]
     env_file: environment.d/immich.env
@@ -25,6 +25,9 @@ services:
 
   machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:${MACHINE_LEARNING_VERSION:-release}
+    extends:
+      file: hardware-acceleration.machine-learning.yaml
+      service: hardware-acceleration
     volumes:
       - ${MODEL_CACHE_VOLUME:-model-cache}:/cache
       - /etc/localtime:/etc/localtime:ro
