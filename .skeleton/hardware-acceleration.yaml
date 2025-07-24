@@ -30,8 +30,22 @@ services:
     #     reservations:
     #       devices:
     #         - driver: nvidia
+    #           capabilities: [gpu, compute, video]
     #           count: 1
-    #           capabilities:
-    #             - gpu
-    #             - compute
-    #             - video
+    
+  # --------------------------------------------------------------------------
+  # Rockchip MPP
+  # --------------------------------------------------------------------------
+
+  # rkmpp:
+  #   security_opt: [systempaths=unconfined, apparmor=unconfined]
+  #   group_add: [video]
+  #   devices:
+  #     - /dev/rga:/dev/rga
+  #     - /dev/dri:/dev/dri
+  #     - /dev/dma_heap:/dev/dma_heap
+  #     - /dev/mpp_service:/dev/mpp_service
+  #     # - /dev/mali0:/dev/mali0 # Needed to enable OpenCL-accelerated HDR -> SDR tonemapping
+  #   volumes:
+  #     # - /etc/OpenCL:/etc/OpenCL:ro # Needed to enable OpenCL-accelerated HDR -> SDR tonemapping
+  #     # - /usr/lib/aarch64-linux-gnu/libmali.so.1:/usr/lib/aarch64-linux-gnu/libmali.so.1:ro # Needed to enable OpenCL-accelerated HDR -> SDR tonemapping

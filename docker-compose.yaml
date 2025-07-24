@@ -3,7 +3,7 @@ services:
   immich:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     extends:
-      file: hardware-acceleration.ms.yaml
+      file: hardware-acceleration.yaml
       service: hardware-acceleration
     depends_on: [postgres, redis]
     env_file: environment.d/immich.env
@@ -25,10 +25,7 @@ services:
     restart: unless-stopped
 
   machine-learning:
-    image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}
-    extends:
-      file: hardware-acceleration.ml.yaml
-      service: hardware-acceleration
+    image: ghcr.io/immich-app/immich-machine-learning:${MACHINE_LEARNING_VERSION:-release}
     volumes:
       - ${MODEL_CACHE_VOLUME:-model-cache}:/cache
       - /etc/localtime:/etc/localtime:ro
