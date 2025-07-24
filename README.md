@@ -47,3 +47,19 @@ Configuration
 | Option               | Value                          |
 | -------------------- | ------------------------------ |
 | Machine Learning URL | `http://machine-learning:3003` |
+
+Updating
+--------
+
+  1. Fetch latest file changes from the repository
+
+         git pull --ff-only
+
+  2. If necessary, initialize new configuration files
+
+         make config
+
+  3. Pull new images and restart containers
+
+         docker compose pull
+         docker compose up -d
