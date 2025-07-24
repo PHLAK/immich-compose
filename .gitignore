@@ -1,3 +1,4 @@
 /.env
 /hardware-acceleration.yaml
 /environment.d/*
+/volumes/*
