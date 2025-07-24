@@ -5,14 +5,14 @@ services:
     extends:
       file: hardware-acceleration.yaml
       service: hardware-acceleration
-    depends_on: [postgres, redis]
+    depends_on: [database, cache]
     env_file: environment.d/immich.env
     environment:
-      DB_HOSTNAME: ${DATABASE_HOST:-postgres}
+      DB_HOSTNAME: ${DATABASE_HOST:-database}
       DB_DATABASE_NAME: ${DATABASE_NAME:-immich}
       DB_USERNAME: ${DATABASE_USER:-immich}
       DB_PASSWORD: ${DATABASE_PASSWORD}
-      REDIS_HOSTNAME: redis
+      REDIS_HOSTNAME: cache
       TZ: ${TZ:-UTC}
     ports:
       - ${IMMICH_SERVER_PORT:-2283}:2283
@@ -33,11 +33,11 @@ services:
       DB_DATABASE_NAME: ${DATABASE_NAME:-immich}
       DB_USERNAME: ${DATABASE_USER:-immich}
       DB_PASSWORD: ${DATABASE_PASSWORD}
-      REDIS_HOSTNAME: redis
+      REDIS_HOSTNAME: cache
       TZ: ${TZ:-UTC}
     restart: unless-stopped
 
-  postgres:
+  database:
     image: ghcr.io/immich-app/postgres:${POSTGRES_VERSION:-16-vectorchord0.4.2}
     env_file: environment.d/postgres.env
     environment:
@@ -52,7 +52,7 @@ services:
       com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
 
-  redis:
+  cache:
     image: valkey/valkey:${VALKEY_VERSION:-8}
     volumes:
       - /etc/localtime:/etc/localtime:ro
