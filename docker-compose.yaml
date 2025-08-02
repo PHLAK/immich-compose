@@ -17,7 +17,7 @@ services:
     ports:
       - ${IMMICH_SERVER_PORT:-2283}:2283
     volumes:
-      - ${IMMICH_UPLOADS_PATH}:/usr/src/app/upload
+      - ${IMMICH_UPLOADS_PATH}:/data
       - /etc/localtime:/etc/localtime:ro
     labels:
       com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
