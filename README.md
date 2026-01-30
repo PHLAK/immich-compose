@@ -29,14 +29,17 @@ Installation
 Hardware Acceleration
 ---------------------
 
-To enable hardware accelerated transcoding uncomment the relevant lines in
-`hardware-acceleration.ms.yaml` based on your available hardware.
+To enable hardware accelerated _transcoding_ you may modify the values of the 
+corresponding service for your hardware in `hwaccel.transcoding.yaml`. You may
+then set the `HARDWARE_ACCELERATION_TRANSCODING` option to the service name.
 
-To enable hardware accelerated machine learning uncomment the relevant lines in
-`hardware-acceleration.ml.yaml` based on your available hardware.
+To enable hardware accelerated _machine learning_ you may modify the values of
+the corresponding service for your hardware in `hwaccel.ml.yaml`. You may then
+set the `HARDWARE_ACCELERATION_MACHINE_LEARNING` option to the service name.
 
-After making any changes to the above files you must run `docker compose up -d`
-to restart your containers.
+> [!TIP]
+> After modifying the above files or configuration options you must restart
+> your container with `docker compose up -d` for the changes to apply.
 
 Configuration
 -------------
