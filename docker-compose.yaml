@@ -3,8 +3,8 @@ services:
   immich:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     extends:
-      file: hardware-acceleration.immich.yaml
-      service: hardware-acceleration
+      file: hwaccel.transcoding.yaml
+      service: ${HARDWARE_ACCELERATION_TRANSCODING:-cpu}
     depends_on: [database, cache]
     env_file: environment.d/immich.env
     environment:
@@ -26,8 +26,8 @@ services:
   machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:${MACHINE_LEARNING_VERSION:-release}
     extends:
-      file: hardware-acceleration.machine-learning.yaml
-      service: hardware-acceleration
+      file: hwaccel.ml.yaml
+      service: ${HARDWARE_ACCELERATION_MACHINE_LEARNING:-cpu}
     volumes:
       - ${MODEL_CACHE_VOLUME:-model-cache}:/cache
       - /etc/localtime:/etc/localtime:ro

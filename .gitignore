@@ -1,4 +1,4 @@
 /.env
-/hardware-acceleration.*.yaml
+/hwaccel.*.yaml
 /environment.d/*
 /volumes/*
