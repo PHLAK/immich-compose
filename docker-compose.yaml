@@ -15,7 +15,7 @@ services:
       REDIS_HOSTNAME: cache
       TZ: ${TZ:-UTC}
     ports:
-      - ${IMMICH_SERVER_PORT:-2283}:2283
+      - ${IMMICH_SERVER_PORT:-127.0.0.1:2283}:2283
     volumes:
       - ${IMMICH_UPLOADS_PATH}:/data
       - /etc/localtime:/etc/localtime:ro
