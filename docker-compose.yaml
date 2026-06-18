@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
 
   database:
-    image: ghcr.io/immich-app/postgres:${POSTGRES_VERSION:-16-vectorchord0.4.3}
+    image: ghcr.io/immich-app/postgres:${POSTGRES_VERSION:-18-vectorchord0.5.3}
     env_file: environment.d/postgres.env
     environment:
       POSTGRES_DB: ${DATABASE_NAME:-immich}
@@ -49,7 +49,7 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_INITDB_ARGS: '--data-checksums'
     volumes:
-      - ${DATABASE_VOLUME:-postgres-data}:/var/lib/postgresql/data
+      - ${DATABASE_VOLUME:-postgres-data}:/var/lib/postgresql
       - /etc/localtime:/etc/localtime:ro
     labels:
       com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
