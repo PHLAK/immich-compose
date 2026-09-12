@@ -15,7 +15,7 @@ services:
       REDIS_HOSTNAME: cache
       TZ: ${TZ:-UTC}
     ports:
-      - ${IMMICH_SERVER_PORT:-127.0.0.1:2283}:2283
+      - ${IMMICH_SERVER_PORT:-2283}:2283
     volumes:
       - ${IMMICH_UPLOADS_PATH}:/data
       - /etc/localtime:/etc/localtime:ro
@@ -32,11 +32,6 @@ services:
       - ${MODEL_CACHE_VOLUME:-model-cache}:/cache
       - /etc/localtime:/etc/localtime:ro
     environment:
-      DB_HOSTNAME: ${DATABASE_HOST:-postgres}
-      DB_DATABASE_NAME: ${DATABASE_NAME:-immich}
-      DB_USERNAME: ${DATABASE_USER:-immich}
-      DB_PASSWORD: ${DATABASE_PASSWORD}
-      REDIS_HOSTNAME: cache
       TZ: ${TZ:-UTC}
     restart: unless-stopped
 
@@ -51,6 +46,7 @@ services:
     volumes:
       - ${DATABASE_VOLUME:-postgres-data}:/var/lib/postgresql
       - /etc/localtime:/etc/localtime:ro
+    shm_size: 256mb
     labels:
       com.centurylinklabs.watchtower.scope: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
